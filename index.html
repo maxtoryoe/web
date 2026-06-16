@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Registro</title>
+    <title>CRM - Gestión de Clientes</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
-        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
-        h2 { color: #2c3e50; text-align: center; margin-bottom: 25px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
-        input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 10px; }
-        button:hover { background: #219150; }
+        :root { --accent: #4a90e2; --bg: #f8f9fa; --text: #333; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); display: flex; justify-content: center; padding: 40px 20px; }
+        .form-container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); width: 100%; max-width: 500px; }
+        h2 { color: #2c3e50; margin-bottom: 25px; border-left: 5px solid var(--accent); padding-left: 15px; }
+        .field { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #666; font-size: 0.9em; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; transition: 0.3s; }
+        input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 5px rgba(74,144,226,0.3); }
+        button { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #357abd; }
     </style>
 </head>
 <body>
-
-<div class="card">
-    <h2>Registro de Cliente</h2>
-    <form id="clienteForm">
-        <div class="form-group"><label>Nombre</label><input type="text" name="nombre" required></div>
-        <div class="form-group"><label>DNI</label><input type="text" name="dni" required></div>
-        <div class="form-group"><label>Dirección</label><input type="text" name="direccion" required></div>
-        <div class="form-group"><label>Teléfono</label><input type="text" name="telefono" required></div>
-        <div class="form-group"><label>Email</label><input type="email" name="email"></div>
-        <div class="form-group"><label>Observaciones</label><textarea name="observaciones"></textarea></div>
-        <button type="submit">Guardar Cliente</button>
-    </form>
-</div>
-
-<script>
-    const form = document.getElementById('clienteForm');
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        fetch('TU_URL_AQUI', { method: 'POST', mode: 'no-cors', body: new FormData(form) })
-        .then(() => alert('¡Guardado con éxito!'));
-    });
-</script>
-
+    <div class="form-container">
+        <h2>Registro de Cliente</h2>
+        <form id="clienteForm">
+            <div class="field"><label>Nombre Completo</label><input type="text" name="nombre" required></div>
+            <div class="field"><label>DNI</label><input type="text" name="dni" required></div>
+            <div class="field"><label>Dirección Exacta</label><input type="text" name="direccion" required></div>
+            <div class="field"><label>Teléfono</label><input type="text" name="telefono" required></div>
+            <div class="field"><label>Correo</label><input type="email" name="email" required></div>
+            <div class="field"><label>Observaciones</label><textarea name="observaciones" rows="3"></textarea></div>
+            <button type="submit" id="btn">Guardar Cliente</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('clienteForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            document.getElementById('btn').innerText = 'Enviando...';
+            fetch('https://script.google.com/macros/s/AKfycby-iOautpDWBSwDAqjfWiT_626w6V15VctQXYPe1KjhncT0X6lwFK4106bMKXsyjipv/exec', { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+            .then(() => { alert('¡Registrado y correo enviado!'); form.reset(); document.getElementById('btn').innerText = 'Guardar Cliente'; });
+        });
+    </script>
 </body>
 </html>
