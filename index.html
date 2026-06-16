@@ -35,7 +35,7 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
             document.getElementById('btn').innerText = 'Enviando...';
-            fetch('https://script.google.com/macros/s/AKfycbxPYbK5_rICjDAal0yBLytRwlCjc_0QJvtgPyRNNX6JyWQ2xZKH-nYFZzEy1_tarSwW/exec', { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+            fetch('https://script.google.com/macros/s/AKfycbx2MHf8Q0I2XKWEhb6Ie6kVivsmSQ_b6AMCo-1DaisBKiW2NrgZjROw8ASMvKK4dWDZ/exec', { method: 'POST', mode: 'no-cors', body: new FormData(form) })
             .then(() => { alert('¡Registrado y correo enviado!'); form.reset(); document.getElementById('btn').innerText = 'Guardar Cliente'; });
         });
     </script>
